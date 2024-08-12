@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		3778F2762C6A1199001A56A1 /* SmartHomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778F2752C6A1199001A56A1 /* SmartHomeApp.swift */; };
-		3778F2782C6A1199001A56A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778F2772C6A1199001A56A1 /* ContentView.swift */; };
 		3778F27A2C6A119A001A56A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3778F2792C6A119A001A56A1 /* Assets.xcassets */; };
 		3778F27E2C6A119A001A56A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3778F27D2C6A119A001A56A1 /* Preview Assets.xcassets */; };
+		3778F2872C6A12A3001A56A1 /* SmartHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778F2862C6A12A3001A56A1 /* SmartHomeView.swift */; };
+		3778F2892C6A1C27001A56A1 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778F2882C6A1C27001A56A1 /* RoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3778F2722C6A1199001A56A1 /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3778F2752C6A1199001A56A1 /* SmartHomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHomeApp.swift; sourceTree = "<group>"; };
-		3778F2772C6A1199001A56A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3778F2792C6A119A001A56A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3778F27B2C6A119A001A56A1 /* SmartHome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartHome.entitlements; sourceTree = "<group>"; };
 		3778F27D2C6A119A001A56A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3778F2862C6A12A3001A56A1 /* SmartHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHomeView.swift; sourceTree = "<group>"; };
+		3778F2882C6A1C27001A56A1 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,8 @@
 		3778F2692C6A1198001A56A1 = {
 			isa = PBXGroup;
 			children = (
+				3778F2852C6A125F001A56A1 /* Views */,
+				3778F2842C6A1255001A56A1 /* Models */,
 				3778F2742C6A1199001A56A1 /* SmartHome */,
 				3778F2732C6A1199001A56A1 /* Products */,
 			);
@@ -53,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				3778F2752C6A1199001A56A1 /* SmartHomeApp.swift */,
-				3778F2772C6A1199001A56A1 /* ContentView.swift */,
 				3778F2792C6A119A001A56A1 /* Assets.xcassets */,
 				3778F27B2C6A119A001A56A1 /* SmartHome.entitlements */,
 				3778F27C2C6A119A001A56A1 /* Preview Content */,
@@ -67,6 +70,22 @@
 				3778F27D2C6A119A001A56A1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3778F2842C6A1255001A56A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3778F2852C6A125F001A56A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3778F2862C6A12A3001A56A1 /* SmartHomeView.swift */,
+				3778F2882C6A1C27001A56A1 /* RoomView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3778F2782C6A1199001A56A1 /* ContentView.swift in Sources */,
+				3778F2892C6A1C27001A56A1 /* RoomView.swift in Sources */,
 				3778F2762C6A1199001A56A1 /* SmartHomeApp.swift in Sources */,
+				3778F2872C6A12A3001A56A1 /* SmartHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +219,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -254,6 +275,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -282,9 +304,9 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -292,10 +314,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustinnuzzo.SmartHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -320,9 +343,9 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -330,10 +353,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustinnuzzo.SmartHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

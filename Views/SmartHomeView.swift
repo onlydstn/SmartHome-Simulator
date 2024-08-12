@@ -16,16 +16,17 @@ struct SmartHomeView: View {
         VStack {
             HStack {
                 TextField("gebe einen Text ein", text: $inputText)
+                    .font(.system(size: 16))
                     .padding()
-                    .border(.gray, width: 2)
+                    .background(.gray.opacity(0.2))
                     .cornerRadius(5.0)
                 
                 Button("hinzufügen") {
                     displayedText = inputText
                 }
                 .padding()
-                .background(.blue.opacity((0.7)))
-                .foregroundColor(.white)
+                .background(.gray.opacity((0.2)))
+                .foregroundColor(.black)
                 .cornerRadius(5.0)
             }
             .padding()
@@ -45,6 +46,7 @@ struct SmartHomeView: View {
         }
         .padding()
         
+        Divider()
         Toggle(isOn: $showRoomView) {
             Text("Show RoomView")
         }

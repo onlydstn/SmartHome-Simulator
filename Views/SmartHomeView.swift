@@ -35,16 +35,21 @@ struct SmartHomeView: View {
                 .foregroundColor(.black)
                 .cornerRadius(5.0)
             }
-            .padding()
+            .padding(.bottom, 15)
             
-            ForEach(smartHomeDevices) { devices in
-                    HStack {
+            VStack(alignment: .leading) {
+                ForEach(smartHomeDevices) { devices in
+                    HStack(spacing: 68) {
                         Text(devices.name)
                         Spacer()
                         Text(devices.typeString)
                     }
-                    .background(.red)
+                    Divider()
                 }
+            }
+            .padding(.all, 10)
+            .background(.gray.opacity(0.2))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             
             ZStack {
                 if showRoomView {
@@ -52,9 +57,9 @@ struct SmartHomeView: View {
                         .transition(.move(edge: .trailing))
                 }
             }
+            .padding(.top, 10)
             .animation(.easeInOut(duration: 0.3), value: showRoomView)
             Spacer()
-            
         }
         .padding()
         
@@ -62,8 +67,9 @@ struct SmartHomeView: View {
         Toggle(isOn: $showRoomView) {
             Text("Show RoomView")
         }
-        .padding()
-        
+        .padding(.all, 5)
+        .padding(.leading, 10)
+        .padding(.trailing, 10)
     }
     
     private func addDevice() {
@@ -71,7 +77,7 @@ struct SmartHomeView: View {
         smartHomeDevices.append(newDevice)
         inputText = ""
     }
-
+    
 }
 
 

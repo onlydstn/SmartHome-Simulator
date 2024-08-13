@@ -13,10 +13,9 @@ struct RoomView: View {
             VStack {
                 Spacer()
                 Rectangle()
-                    .frame(maxWidth: 350, maxHeight: 520)
+                    .frame(maxWidth: 360, maxHeight: 520)
                     .cornerRadius(15)
-                    .foregroundStyle(Color(.orange).gradient)
-                    .shadow(color: .black, radius: 3)
+                    .foregroundStyle(Color(.gray).opacity(0.2))
             }
         }
     }

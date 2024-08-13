@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct SmartHomeView: View {
-    @State var inputText: String = ""
+    @State private var inputText: String = ""
     @State var displayedText: String = ""
     @State var showRoomView: Bool = false
+    
+    @State var smartHomeDevices: [SmartDevice] = [
+        SmartDevice(name: "Wohnzimmerlicht", type: .light, isOn: false),
+        SmartDevice(name: "Heizung", type: .thermostat, isOn: false, temperature: 20.0),
+        SmartDevice(name: "Haustür", type: .lock, isOn: false, isLocked: false)
+    ]
     
     var body: some View {
         VStack {
@@ -22,7 +28,7 @@ struct SmartHomeView: View {
                     .cornerRadius(5.0)
                 
                 Button("hinzufügen") {
-                    displayedText = inputText
+                    addDevice()
                 }
                 .padding()
                 .background(.gray.opacity((0.2)))
@@ -31,8 +37,14 @@ struct SmartHomeView: View {
             }
             .padding()
             
-            Text(displayedText)
-                .font(.system(size: 22))
+            ForEach(smartHomeDevices) { devices in
+                    HStack {
+                        Text(devices.name)
+                        Spacer()
+                        Text(devices.typeString)
+                    }
+                    .background(.red)
+                }
             
             ZStack {
                 if showRoomView {
@@ -53,7 +65,15 @@ struct SmartHomeView: View {
         .padding()
         
     }
+    
+    private func addDevice() {
+        let newDevice: SmartDevice = SmartDevice(name: inputText, type: .none, isOn: false)
+        smartHomeDevices.append(newDevice)
+        inputText = ""
+    }
+
 }
+
 
 #Preview {
     SmartHomeView()

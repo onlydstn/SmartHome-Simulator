@@ -51,23 +51,22 @@ struct SmartHomeView: View {
             .background(.gray.opacity(0.2))
             .clipShape(RoundedRectangle(cornerRadius: 10))
             
-            ZStack {
+            HStack {
                 if showRoomView {
                     RoomView()
                         .transition(.move(edge: .trailing))
                 }
             }
             .padding(.top, 10)
-            .animation(.easeInOut(duration: 0.3), value: showRoomView)
+            .animation(.easeInOut(duration: 0.15), value: showRoomView)
             Spacer()
         }
         .padding()
-        
         Divider()
+        
         Toggle(isOn: $showRoomView) {
             Text("Show RoomView")
         }
-        .padding(.all, 5)
         .padding(.leading, 10)
         .padding(.trailing, 10)
     }

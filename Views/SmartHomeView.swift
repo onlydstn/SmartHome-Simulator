@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SmartHomeView: View {
+    @State private var showingAlert: Bool = false
     @State private var inputText: String = ""
-    @State var displayedText: String = ""
-    @State var showRoomView: Bool = false
+    @State private var displayedText: String = ""
+    @State private var showRoomView: Bool = false
+    @State private var selectedDeviceType: DeviceType = .light
     
     @State var smartHomeDevices: [SmartDevice] = [
         SmartDevice(name: "Wohnzimmerlicht", type: .light, isOn: false),
@@ -21,19 +23,39 @@ struct SmartHomeView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField("gebe einen Text ein", text: $inputText)
-                    .font(.system(size: 16))
-                    .padding()
-                    .background(.gray.opacity(0.2))
-                    .cornerRadius(5.0)
-                
+                ZStack(alignment: .trailing) {
+                    TextField("gebe einen Text ein", text: $inputText)
+                        .font(.system(size: 14))
+                        .padding()
+                        .background(.gray.opacity(0.2))
+                        .cornerRadius(5.0)
+                    
+                    Picker("Gerätetyp", selection: $selectedDeviceType) {
+                        ForEach(DeviceType.allCases) { devicetype in
+                            //Text(devicetype.rawValue).tag(devicetype)
+                            Label("\(devicetype.rawValue)", systemImage: devicetype.iconName).tag(devicetype)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .padding(.trailing, -5)
+                }
+
                 Button("hinzufügen") {
-                    addDevice()
+                    if inputText != "" {
+                        addDevice()
+                    } else {
+                        showingAlert = true
+                    }
                 }
                 .padding()
                 .background(.gray.opacity((0.2)))
                 .foregroundColor(.black)
                 .cornerRadius(5.0)
+                .font(.system(size: 14))
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Bitte triff eine Auswahl"),
+                message: Text("Bitte gebe einen Gerätename und einen Gerätetyp ein."))
+                }
             }
             .padding(.bottom, 15)
             
@@ -53,7 +75,7 @@ struct SmartHomeView: View {
             
             HStack {
                 if showRoomView {
-                    RoomView()
+                    RoomView(devices: smartHomeDevices)
                         .transition(.move(edge: .trailing))
                 }
             }
@@ -71,8 +93,9 @@ struct SmartHomeView: View {
         .padding(.trailing, 10)
     }
     
+    
     private func addDevice() {
-        let newDevice: SmartDevice = SmartDevice(name: inputText, type: .none, isOn: false)
+        let newDevice: SmartDevice = SmartDevice(name: inputText, type: selectedDeviceType, isOn: false)
         smartHomeDevices.append(newDevice)
         inputText = ""
     }

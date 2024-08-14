@@ -7,10 +7,23 @@
 
 import Foundation
 
-enum DeviceType {
-    case light
-    case thermostat
-    case lock
+enum DeviceType: String, CaseIterable, Identifiable {
+    var id: String { rawValue }
+    
+    var iconName: String {
+        switch self {
+        case .light:
+            return "lightbulb.max"
+        case .thermostat:
+            return "thermometer.high"
+        case .lock:
+            return "lock"
+        }
+    }
+    
+    case light = "Licht"
+    case thermostat = "Heizung"
+    case lock = "Schloss"
 }
 
 struct SmartDevice: Identifiable {
@@ -32,7 +45,8 @@ struct SmartDevice: Identifiable {
         case .lock:
             return "Schloss"
         case .none:
-            return "kein Typ" // wenn neues Objekt aus 
+            return "kein Type" // wenn neues Objekt aus
         }
     }
 }
+

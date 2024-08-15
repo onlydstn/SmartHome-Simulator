@@ -16,7 +16,7 @@ struct SmartHomeView: View {
     
     @State var smartHomeDevices: [SmartDevice] = [
         SmartDevice(name: "Wohnzimmerlicht", type: .light, isOn: false),
-        SmartDevice(name: "Heizung", type: .thermostat, isOn: false, temperature: 20.0),
+        SmartDevice(name: "Heizung", type: .thermostat, isOn: false, temperature: 15.0),
         SmartDevice(name: "Haustür", type: .lock, isOn: false, isLocked: false)
     ]
     
@@ -32,14 +32,13 @@ struct SmartHomeView: View {
                     
                     Picker("Gerätetyp", selection: $selectedDeviceType) {
                         ForEach(DeviceType.allCases) { devicetype in
-                            //Text(devicetype.rawValue).tag(devicetype)
                             Label("\(devicetype.rawValue)", systemImage: devicetype.iconName).tag(devicetype)
                         }
                     }
                     .pickerStyle(.menu)
                     .padding(.trailing, -5)
                 }
-
+                
                 Button("hinzufügen") {
                     if inputText != "" {
                         addDevice()
@@ -54,24 +53,21 @@ struct SmartHomeView: View {
                 .font(.system(size: 14))
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Bitte triff eine Auswahl"),
-                message: Text("Bitte gebe einen Gerätename und einen Gerätetyp ein."))
+                          message: Text("Bitte gebe einen Gerätename und einen Gerätetyp ein."))
                 }
             }
-            .padding(.bottom, 15)
+            Divider()
+            .padding(.bottom)
             
             VStack(alignment: .leading) {
-                ForEach(smartHomeDevices) { devices in
+                ForEach($smartHomeDevices) { devices in
                     HStack(spacing: 68) {
-                        Text(devices.name)
-                        Spacer()
-                        Text(devices.typeString)
+                        SmartDeviceView(device: devices)
                     }
                     Divider()
                 }
             }
-            .padding(.all, 10)
-            .background(.gray.opacity(0.2))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
             
             HStack {
                 if showRoomView {
@@ -99,7 +95,6 @@ struct SmartHomeView: View {
         smartHomeDevices.append(newDevice)
         inputText = ""
     }
-    
 }
 
 

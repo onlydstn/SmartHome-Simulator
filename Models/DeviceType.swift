@@ -8,8 +8,12 @@
 import Foundation
 
 enum DeviceType: String, CaseIterable, Identifiable {
-    var id: String { rawValue }
     
+    case light = "Licht"
+    case thermostat = "Heizung"
+    case lock = "Schloss"
+    
+    var id: String { rawValue }
     var iconName: String {
         switch self {
         case .light:
@@ -21,9 +25,7 @@ enum DeviceType: String, CaseIterable, Identifiable {
         }
     }
     
-    case light = "Licht"
-    case thermostat = "Heizung"
-    case lock = "Schloss"
+    
 }
 
 struct SmartDevice: Identifiable {
@@ -41,7 +43,7 @@ struct SmartDevice: Identifiable {
         case .light:
             return "Licht"
         case .thermostat:
-            return "Heizung"
+            return "Thermostat"
         case .lock:
             return "Schloss"
         case .none:

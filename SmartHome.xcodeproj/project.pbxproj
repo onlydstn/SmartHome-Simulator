@@ -88,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				3778F2862C6A12A3001A56A1 /* SmartHomeView.swift */,
-				3778F2882C6A1C27001A56A1 /* RoomView.swift */,
 				37F63FAC2C6E299900B6448C /* SmartDeviceView.swift */,
+				3778F2882C6A1C27001A56A1 /* RoomView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

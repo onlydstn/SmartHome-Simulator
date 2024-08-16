@@ -57,17 +57,27 @@ struct SmartHomeView: View {
                 }
             }
             Divider()
-            .padding(.bottom)
+                .padding(.bottom)
             
-            VStack(alignment: .leading) {
-                ForEach($smartHomeDevices) { devices in
-                    HStack(spacing: 68) {
-                        SmartDeviceView(device: devices)
-                    }
-                    Divider()
-                }
+            HStack {
+                Text("Geräte")
+                    .font(.title3)
+                    .padding(.vertical, -10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             
+            List {
+                ForEach($smartHomeDevices) { devices in
+                    SmartDeviceView(device: devices)
+                        //.listRowBackground(Color(.clear))
+                }
+                .onDelete { indexSet in
+                    smartHomeDevices.remove(atOffsets: indexSet)
+                }
+            }
+            .listStyle(PlainListStyle())
+            .padding(.horizontal, -20)
+            .padding(.vertical, 16)
             
             HStack {
                 if showRoomView {

@@ -14,51 +14,58 @@ struct SmartDeviceView: View {
     var body: some View {
         HStack(alignment: .center) {
             switch device.type {
+                
             case .light:
                 Image(systemName: "chandelier")
-            case .thermostat:
-                Image(systemName: "heater.vertical")
-            case .lock:
-                if device.isLocked {
-                    Image(systemName: "door.right.hand.closed")
-                } else {
-                    Image(systemName: "door.right.hand.open")
+                VStack(alignment: .leading) {
+                    Text(device.name)
+                    Text("\(device.typeString)")
+                        .font(.footnote)
                 }
-            default:
-                Image(systemName: "exclamationmark.triangle")
-            }
-            
-            VStack(alignment: .leading) {
-                Text(device.name)
-                Text("\(device.typeString)")
-                    .font(.footnote)
-            }
-            
-            switch device.type {
-            case .light:
                 Toggle(isOn: $device.isOn) {
                     Text("")
                 }
+                
             case .thermostat:
+                Image(systemName: "heater.vertical")
+                VStack(alignment: .leading) {
+                    Text(device.name)
+                    Text("\(device.typeString)")
+                        .font(.footnote)
+                }
                 Slider(value: $device.temperature, in: 7...28)
                 Text(String(format: "%.2f", device.temperature))
+                
             case .lock:
                 if device.isLocked {
+                    Image(systemName: "door.right.hand.closed")
+                    VStack(alignment: .leading) {
+                        Text(device.name)
+                        Text("\(device.typeString)")
+                            .font(.footnote)
+                    }
                     Button("Tür öffnen") {
                         device.isLocked = false
                     }
-                    .padding(.leading, 165)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    
                 } else {
+                    Image(systemName: "door.right.hand.open")
+                    VStack(alignment: .leading) {
+                        Text(device.name)
+                        Text("\(device.typeString)")
+                            .font(.footnote)
+                    }
                     Button("Tür schließen") {
                         device.isLocked = true
                     }
-                    .padding(.leading, 165)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
+                
             default:
-                Text("leer")
+                Image(systemName: "exclamationmark.triangle")
             }
         }
-        
     }
 }
 

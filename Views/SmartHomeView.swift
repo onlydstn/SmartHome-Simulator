@@ -46,8 +46,8 @@ struct SmartHomeView: View {
                     Button("hinzufügen") {
                         if inputText != "" {
                             addDevice()
-                            let generator = UIImpactFeedbackGenerator(style: .medium)
-                            generator.impactOccurred()
+                           let generator = UIImpactFeedbackGenerator(style: .medium)
+                            generator.impactOccurred() //haptic feedback wenn Gerät hinzugefügt wird
                         } else {
                             showingAlert = true
                         }
@@ -81,10 +81,10 @@ struct SmartHomeView: View {
                             .background(Color(.secondarySystemBackground))
                             .cornerRadius(10)
                             .shadow(radius: 2)
-                            .padding(.vertical, 5)
+                            .padding(.vertical, 1)
                     }
-                    .onDelete { indexSet in
-                        smartHomeDevices.remove(atOffsets: indexSet)
+                    .onDelete { index in
+                        smartHomeDevices.remove(atOffsets: index)
                     }
                 }
                 .listStyle(PlainListStyle())

@@ -44,10 +44,13 @@ struct SmartDeviceView: View {
                         Text("\(device.typeString)")
                             .font(.footnote)
                     }
-                    Button("Tür öffnen") {
+                    Button {
                         device.isLocked = false
+                    } label: {
+                        Image(systemName: "lock")
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                    .font(.title)
                     
                 } else {
                     Image(systemName: "door.right.hand.open")
@@ -56,10 +59,13 @@ struct SmartDeviceView: View {
                         Text("\(device.typeString)")
                             .font(.footnote)
                     }
-                    Button("Tür schließen") {
+                    Button {
                         device.isLocked = true
+                    } label: {
+                        Image(systemName: "lock.open")
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                    .font(.title)
                 }
                 
             default:

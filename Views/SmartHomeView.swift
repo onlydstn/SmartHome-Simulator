@@ -21,82 +21,96 @@ struct SmartHomeView: View {
     ]
     
     var body: some View {
-        VStack {
-            HStack {
-                ZStack(alignment: .trailing) {
-                    TextField("gebe einen Text ein", text: $inputText)
-                        .font(.system(size: 14))
-                        .padding()
-                        .background(.gray.opacity(0.2))
-                        .cornerRadius(5.0)
+        NavigationStack {
+            VStack {
+                HStack {
+                    ZStack(alignment: .trailing) {
+                        TextField("Gerätename", text: $inputText)
+                            .font(.system(size: 14))
+                            .padding(.horizontal, -10)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(10.0)
+                            .shadow(radius: 2)
+                        
+                        Picker("Gerätetyp", selection: $selectedDeviceType) {
+                            ForEach(DeviceType.allCases) { devicetype in
+                                Label("\(devicetype.rawValue)", systemImage: devicetype.iconName).tag(devicetype)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                        .padding(.trailing, -5)
+                    }
                     
-                    Picker("Gerätetyp", selection: $selectedDeviceType) {
-                        ForEach(DeviceType.allCases) { devicetype in
-                            Label("\(devicetype.rawValue)", systemImage: devicetype.iconName).tag(devicetype)
+                    
+                    Button("hinzufügen") {
+                        if inputText != "" {
+                            addDevice()
+                            let generator = UIImpactFeedbackGenerator(style: .medium)
+                            generator.impactOccurred()
+                        } else {
+                            showingAlert = true
                         }
                     }
-                    .pickerStyle(.menu)
-                    .padding(.trailing, -5)
-                }
-                
-                Button("hinzufügen") {
-                    if inputText != "" {
-                        addDevice()
-                    } else {
-                        showingAlert = true
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(.blue)
+                    .cornerRadius(10.0)
+                    .shadow(radius: 2)
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Bitte triff eine Auswahl"),
+                              message: Text("Bitte gebe einen Gerätename ein und wähle einen passenden Gerätetypen aus."))
                     }
                 }
-                .padding()
-                .background(.gray.opacity((0.2)))
-                .foregroundColor(.black)
-                .cornerRadius(5.0)
-                .font(.system(size: 14))
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Bitte triff eine Auswahl"),
-                          message: Text("Bitte gebe einen Gerätename und einen Gerätetyp ein."))
-                }
-            }
-            Divider()
                 .padding(.bottom)
-            
-            HStack {
-                Text("Geräte")
-                    .font(.title3)
-                    .padding(.vertical, -10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            
-            List {
-                ForEach($smartHomeDevices) { devices in
-                    SmartDeviceView(device: devices)
-                        //.listRowBackground(Color(.clear))
+                
+                VStack(alignment: .leading) {
+                    Text("Geräte")
+                        .font(.title3)
+                        .padding(.vertical, -5)
+                    Divider()
+                        .padding(.top, 0)
                 }
-                .onDelete { indexSet in
-                    smartHomeDevices.remove(atOffsets: indexSet)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                List {
+                    ForEach($smartHomeDevices) { devices in
+                        SmartDeviceView(device: devices)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(10)
+                            .shadow(radius: 2)
+                            .padding(.vertical, 5)
+                    }
+                    .onDelete { indexSet in
+                        smartHomeDevices.remove(atOffsets: indexSet)
+                    }
                 }
+                .listStyle(PlainListStyle())
+                .padding(.horizontal, -20)
+                
+                HStack {
+                    if showRoomView {
+                        RoomView(devices: smartHomeDevices)
+                            .cornerRadius(20)
+                            .shadow(radius: 20)
+                            .transition(.slide)
+                            .padding()
+                    }
+                }
+                //.padding(.top)
+                .animation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.5), value: showRoomView)
             }
-            .listStyle(PlainListStyle())
-            .padding(.horizontal, -20)
-            .padding(.vertical, 16)
+            .padding()
+            .navigationTitle("Smart Home")
             
-            HStack {
-                if showRoomView {
-                    RoomView(devices: smartHomeDevices)
-                        .transition(.move(edge: .trailing))
-                }
+            Toggle(isOn: $showRoomView) {
+                Text("Show RoomView")
             }
-            .padding(.top, 10)
-            .animation(.easeInOut(duration: 0.15), value: showRoomView)
-            Spacer()
+            .padding(.leading, 10)
+            .padding(.trailing, 10)
         }
-        .padding()
-        Divider()
-        
-        Toggle(isOn: $showRoomView) {
-            Text("Show RoomView")
-        }
-        .padding(.leading, 10)
-        .padding(.trailing, 10)
     }
     
     

@@ -83,8 +83,8 @@ struct SmartHomeView: View {
                             .shadow(radius: 2)
                             .padding(.vertical, 1)
                     }
-                    .onDelete { index in
-                        smartHomeDevices.remove(atOffsets: index)
+                    .onDelete { offset in
+                        smartHomeDevices.remove(atOffsets: offset)
                     }
                 }
                 .listStyle(PlainListStyle())
